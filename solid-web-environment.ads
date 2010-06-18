@@ -48,5 +48,5 @@ package Solid.Web.Environment is
    -- Abstract operation to be overridden.
    function Value (Object : Data; Name : String) return String is abstract;
    type Callback is access procedure (Name : in String; Value : in String; Continue : in out Boolean);
-   procedure Iterate_Process (Object : in Data; Process : Callback) is abstract;
+   procedure Iterate_Process (Object : in Data; Process : in Callback) is abstract;
 end Solid.Web.Environment;

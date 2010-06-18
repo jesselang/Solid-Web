@@ -38,7 +38,7 @@ package body Solid.Web.Response.Client is
          Parsed.Reason := +Line (Space + 5 .. Last);
       end Status_Line;
 
-      Parsed.Headers := Web.Headers.Read (Stream => Stream);
+      Parsed.Headers := Web.Headers.Read (Stream => Stream_Handle (Stream) );
 
       Read_Payload : loop
          Ada.Streams.Read (Stream => Stream.all, Item => Payload_Buffer, Last => Payload_Last);

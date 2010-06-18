@@ -4,7 +4,7 @@ with Solid.Text_Streams;
 with Solid.Web.Containers.Tables;
 
 package body Solid.Web.Headers is
-   function Read (Stream : access Ada.Streams.Root_Stream_Type'Class) return List is
+   function Read (Stream : Stream_Handle) return List is
       Headers   : List;
       Text      : Text_Streams.Text_Stream;
       Line      : String (1 .. 256);
@@ -31,7 +31,7 @@ package body Solid.Web.Headers is
       return Headers;
    end Read;
 
-   procedure Write (Headers : in List; Stream : access Ada.Streams.Root_Stream_Type'Class) is
+   procedure Write (Headers : in List; Stream : in Stream_Handle) is
       procedure Write_Header (Name : in String; Values : in Strings.String_Array; Continue : in out Boolean);
 
       procedure Write_Headers is new Solid.Web.Containers.Tables.Iterate (Process => Write_Header);

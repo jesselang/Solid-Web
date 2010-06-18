@@ -55,7 +55,7 @@ package body Solid.Web.Client is
       Text_Streams.Create (Stream => Text, From => Stream (Socket), Line_Ending => Text_Streams.CR_LF);
       Text_Streams.Put_Line (Stream => Text, Item => "GET " & Request (URL) & ' ' & Messages.HTTP_Version_Token & "1.0");
       Text_Streams.Put_Line (Stream => Text, Item => "Host: " & (+Host.Text) );
-      Web.Headers.Write (Headers => Headers, Stream => Stream (Socket) );
+      Web.Headers.Write (Headers => Headers, Stream => Stream_Handle (Stream (Socket) ) );
       Text_Streams.New_Line (Stream => Text);
 
       Result := Response.Client.Read (Stream => Stream (Socket) );
@@ -91,7 +91,7 @@ package body Solid.Web.Client is
       Text_Streams.Create (Stream => Text, From => Stream (Socket), Line_Ending => Text_Streams.CR_LF);
       Text_Streams.Put_Line (Stream => Text, Item => "POST " & Request (URL) & ' ' & Messages.HTTP_Version_Token & "1.0");
       Text_Streams.Put_Line (Stream => Text, Item => "Host: " & (+Host.Text) );
-      Web.Headers.Write (Headers => Headers, Stream => Stream (Socket) );
+      Web.Headers.Write (Headers => Headers, Stream => Stream_Handle (Stream (Socket) ) );
       Text_Streams.New_Line (Stream => Text);
 
       -- I believe we're missing the actual POSTing here.
