@@ -165,7 +165,8 @@ package body Solid.Web.Standard is
       when Text_Streams.End_Of_Stream =>
          raise Invalid_Gateway with "I/O stream ended unexpectedly.";
       when O : others =>
-         Program_Response := Response.Build (Content_Type => "text/plain",
+         Program_Response := Response.Build (For_Request  => Program_Request,
+                                             Content_Type => "text/plain",
                                              Message_Body => Ada.Exceptions.Exception_Name (O) & " - " &
                                                              Ada.Exceptions.Exception_Message (O) );
          Write_Response (Object => Program_Response);

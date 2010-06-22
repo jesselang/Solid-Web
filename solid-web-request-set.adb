@@ -4,6 +4,11 @@ with Solid.Text_Streams;
 use Solid.Strings;
 
 package body Solid.Web.Request.Set is
+   procedure Transaction (Object : in out Data; ID : Web.Transaction_ID) is
+   begin -- Transaction
+      Object.Transaction := ID;
+   end Transaction;
+
    procedure Environment (Object : in out Data; Environment : in Web.Environment.Handle) is
    begin -- Environment
       Object.Environment := Environment;

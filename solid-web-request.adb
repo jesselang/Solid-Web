@@ -166,6 +166,11 @@ package body Solid.Web.Request is
          return No_Port;
    end Remote_Port;
 
+   function Transaction (Object : Data) return Web.Transaction_ID is
+   begin -- Transaction
+      return Object.Transaction;
+   end Transaction;
+
    function Environment (Object : Data) return Web.Environment.Handle is
    begin -- Environment
       return Object.Environment;

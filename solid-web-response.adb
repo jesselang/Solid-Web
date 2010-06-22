@@ -25,16 +25,18 @@ package body Solid.Web.Response is
 
       Result := Result & Text_Streams.To_String (Request.Payload (Client) );
 
-      return Build (Content_Type => "text/plain", Message_Body => +Result);
+      return Build (For_Request => Client, Content_Type => "text/plain", Message_Body => +Result);
    end Test;
 
-   function Build (Content_Type : String;
+   function Build (For_Request  : Request.Data;
+                   Content_Type : String;
                    Message_Body : String;
                    Headers      : Web.Headers.List := Web.Headers.No_Headers)
    return Data is
       Result : Data;
    begin -- Build
-      Result.Headers := Headers;
+      Result.Transaction := Request.Transaction (For_Request);
+      Result.Headers     := Headers;
 
       if not Result.Headers.Exists (Name => Web.Headers.Content_Type) then
          Result.Headers.Add (Name => Web.Headers.Content_Type, Value => Content_Type);

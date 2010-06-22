@@ -89,6 +89,10 @@ package Solid.Web.Request is
    -- Returns the remote (client) port.
 
    -- Components of the request.
+
+   function Transaction (Object : Data) return Web.Transaction_ID;
+   -- Returns the transaction ID assigned to Object.  Used with persistent, concurrent web applications.
+
    function Environment (Object : Data) return Web.Environment.Handle;
    -- Returns the environment handle.  This could be used to get non-standard information from the environment.
 
@@ -114,6 +118,7 @@ package Solid.Web.Request is
 private -- Solid.Web.Request
    type Data is new Ada.Finalization.Controlled with record
       Created            : Ada.Calendar.Time;
+      Transaction        : Web.Transaction_ID := No_Transaction;
       Environment        : Web.Environment.Handle;
       Post_Query         : Strings.U_String;
       Headers            : Web.Headers.List;

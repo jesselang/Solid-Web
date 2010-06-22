@@ -7,6 +7,9 @@ with Solid.Web.Parameters;
 with Solid.Web.Session;
 
 package Solid.Web.Request.Set is
+   procedure Transaction (Object : in out Data; ID : Web.Transaction_ID);
+   -- Required for persistent applications handling requests concurrently.
+
    procedure Environment (Object : in out Data; Environment : in Web.Environment.Handle);
 
    procedure Post_Query (Object : in out Data; Post_Query : in String);

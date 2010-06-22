@@ -11,7 +11,8 @@ package Solid.Web.Response is
    function Test (Client : Request.Data) return Data;
    pragma Inline (Test);
 
-   function Build (Content_Type : String;
+   function Build (For_Request  : Request.Data;
+                   Content_Type : String;
                    Message_Body : String;
                    Headers      : Web.Headers.List := Web.Headers.No_Headers)
    return Data;
@@ -30,10 +31,11 @@ package Solid.Web.Response is
    function Payload (Object : Data) return Ada.Streams.Stream_Element_Array;
 private -- Solid.Web.Response
    type Data is record
-      Code    : Web.Messages.Status_Code;
-      Reason  : Strings.U_String;
-      Headers : Web.Headers.List;
-      Payload : Strings.U_String;
+      Transaction : Web.Transaction_ID := Web.No_Transaction;
+      Code        : Web.Messages.Status_Code;
+      Reason      : Strings.U_String;
+      Headers     : Web.Headers.List;
+      Payload     : Strings.U_String;
    end record;
 
    pragma Assert (Ada.Streams.Stream_Element'Size = 8); -- -gnata has to be enabled for this assertion to work.
