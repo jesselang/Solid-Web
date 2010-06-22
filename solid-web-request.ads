@@ -75,17 +75,13 @@ package Solid.Web.Request is
    function Server_Address (Object : Data) return String;
    -- Returns the server address.
 
-   type Port_Number is range 0 .. 65535;
-
-   No_Port : constant Port_Number := 0;
-
-   function Server_Port (Object : Data) return Port_Number;
+   function Server_Port (Object : Data) return Network_Port;
    -- Returns the server port.
 
    function Remote_Address (Object : Data) return String;
    -- Returns the remote (client) address.
 
-   function Remote_Port (Object : Data) return Port_Number;
+   function Remote_Port (Object : Data) return Network_Port;
    -- Returns the remote (client) port.
 
    -- Components of the request.

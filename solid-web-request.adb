@@ -139,11 +139,11 @@ package body Solid.Web.Request is
       return Web.Environment.Value (Object.Environment, Name => Web.Environment.Server_Addr);
    end Server_Address;
 
-   function Server_Port (Object : Data) return Port_Number is
+   function Server_Port (Object : Data) return Network_Port is
    begin -- Server_Port
       Validate_Environment (Object => Object);
 
-      return Port_Number'Value (Web.Environment.Value (Object.Environment, Name => Web.Environment.Server_Port) );
+      return Network_Port'Value (Web.Environment.Value (Object.Environment, Name => Web.Environment.Server_Port) );
    exception -- Server_Port
       when Constraint_Error =>
          return No_Port;
@@ -156,11 +156,11 @@ package body Solid.Web.Request is
       return Web.Environment.Value (Object.Environment, Name => Web.Environment.Remote_Addr);
    end Remote_Address;
 
-   function Remote_Port (Object : Data) return Port_Number is
+   function Remote_Port (Object : Data) return Network_Port is
    begin -- Remote_Port
       Validate_Environment (Object => Object);
 
-      return Port_Number'Value (Web.Environment.Value (Object.Environment, Name => Web.Environment.Server_Port) );
+      return Network_Port'Value (Web.Environment.Value (Object.Environment, Name => Web.Environment.Server_Port) );
    exception -- Remote_Port
       when Constraint_Error =>
          return No_Port;
