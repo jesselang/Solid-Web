@@ -1,3 +1,4 @@
+with Ada.Exceptions;
 with Ada.Characters.Latin_1;
 with Ada.Streams;
 
@@ -112,6 +113,9 @@ package body Solid.Web.SCGI.Environment is
 
          Tuple_First := Tuple_Last; -- The end of this tuple is the beginning of the next.
       end loop Parse_Environment;
+   exception -- Read
+      when E : others =>
+         raise Read_Error with Ada.Exceptions.Exception_Information (E);
    end Read;
 
    -- It's possible we don't need this operation.
