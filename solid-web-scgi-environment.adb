@@ -74,6 +74,8 @@ package body Solid.Web.SCGI.Environment is
       end loop Read_Environment;
 
       Parse_Environment : loop
+         exit Parse_Environment when Last >= Buffer.all'Last;
+
          -- Tuple_First is set.
          Last := Tuple_First + 1;
 
@@ -91,12 +93,6 @@ package body Solid.Web.SCGI.Environment is
          Last := Tuple_Split + 1;
 
          Find_Last : loop
-            if Last >= Buffer.all'Last then
-               Last := Buffer.all'Last; -- The comma at the end becomes the last bound for the tuple.
-
-               exit Find_Last;
-            end if;
-
             exit Find_Last when Buffer (Last) = Stream_Nul;
 
             Last := Last + 1;
